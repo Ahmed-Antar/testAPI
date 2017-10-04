@@ -1,0 +1,57 @@
+<?php
+
+class Error extends Controller {
+
+	/**
+	 * $error holder
+	 * @var string
+	 */
+	private $_error = null;
+
+	/**
+	 * save error to $this->_error
+	 * @param string $error 
+	 */
+	public function __construct($error=null){
+		$this->_error = $error;
+	}
+
+	/**
+	 * load a 404 page with the error message
+	 */
+	public function index(){
+
+		header("HTTP/1.0 404 Not Found");
+		
+		$data['title'] = '404 NOT FOUND';
+		$data['error'] = $this->_error;
+		$data['indexStyle'] = 'e404Index';		
+		$this->view([Config::$language.'/layout/head',Config::$language.'/error/e404'],$data);
+		
+	}
+
+	/**
+	 * display errors
+	 * @param  array  $error an error of errors
+	 * @param  string $class name of class to apply to div
+	 * @return string        return the errors inside divs
+	 */
+	
+	public static function display($error, $class = 'alert alert-danger'){
+		if (is_array($error)){
+
+			foreach($error as $error){
+				$row.= "<div class='$class'>$error</div>";
+			}
+			return $row;
+
+		} else {
+
+			if(isset($error)){
+				return "<div class='$class'>$error</div>";
+			}
+
+		}
+	}
+
+}

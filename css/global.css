@@ -1,0 +1,7 @@
+/* Your styles here */
+html, body{margin: 0px;padding: 0px;height: 100%;width: 100%;}
+footer{display: table-row; height: 1px; bottom: 0px;}
+.wrapper{padding: 10px;height: auto;}
+.font-bold{font-weight: bold;}
+.list-style-n{list-style: none;}
+.center{text-align: center;}
